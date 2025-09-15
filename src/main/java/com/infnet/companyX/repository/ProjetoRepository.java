@@ -29,6 +29,6 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     @Query("SELECT p FROM Projeto p WHERE p.prioridade = :prioridade AND p.ativo = true ORDER BY p.dataFimPrevista ASC")
     List<Projeto> findByPrioridade(@Param("prioridade") Integer prioridade);
     
-    @Query("SELECT p FROM Projeto p WHERE p.status = 'EM_ANDAMENTO' AND p.dataFimPrevista < :hoje")
+    @Query("SELECT p FROM Projeto p WHERE p.status = 'EM_ANDAMENTO' AND p.dataFimPrevista < :hoje AND p.ativo = true")
     List<Projeto> findProjetosAtrasados(@Param("hoje") LocalDate hoje);
 }
